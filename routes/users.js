@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router(); //sistema de router
 
 const users = [
     { firstName: 'SAMUEL', lastName: 'ACERO GARCIA', email: 'samuelacga@unisabana.edu.co' },
@@ -34,47 +34,47 @@ const users = [
 ];
 
 router.get('/:count', (req, res) => {
-    const count = parseInt(req.params.count, 10) || 10;
-    let sortOrder = (req.query.sort || 'ASC').toUpperCase();
+    const count = parseInt(req.params.count, 10) || 10; //asegura que count sea un número entero o, de lo contrario, se establece en 10 por defecto.
+    let sortOrder = (req.query.sort || 'ASC').toUpperCase(); //asegura que sortOrder sea 'ASC' o 'DESC'
 
     if (!['ASC', 'DESC'].includes(sortOrder)) {
         return res.status(400).send('Parámetro de organización inválido. Utilice "ASC" o "DESC".');
     }
 
-    let sortedUsers = [...users]; 
+    let sortedUsers = [...users]; //trae el arreglo
     sortedUsers.sort((a, b) => {
         const lastNameA = a.lastName.toLowerCase();
         const lastNameB = b.lastName.toLowerCase();
     
-        if (sortOrder === 'ASC') {
+        if (sortOrder === 'ASC') { //ordena entre ascendente y descendente
             return lastNameA.localeCompare(lastNameB);
         } else {
             return lastNameB.localeCompare(lastNameA);
         }
     });
 
-    let startIndex = sortOrder === 'ASC' ? 0 : Math.max(sortedUsers.length - count, 0);
+    let startIndex = sortOrder === 'ASC' ? 0 : Math.max(sortedUsers.length - count, 0); //si es descendente, se calcula en función de la longitud total de la lista y la cantidad de usuarios a mostrar.
     let endIndex = Math.min(startIndex + count, sortedUsers.length);
 
     let limitedUsers = sortedUsers.slice(startIndex, endIndex);
 
     let output = 'Lista de usuarios:\n\n';
     limitedUsers.forEach(user => {
-        output += `${user.firstName} ${user.lastName}\n`;
+        output += `${user.firstName} ${user.lastName}\n`; //cada estudiante individualmente
     });
 
     res.type('text').send(output);
 });
 
 router.post('/', (req, res) => {
-    const { firstName, lastName, email, city = 'Bogotá', country = 'Colombia' } = req.body;
+    const { firstName, lastName, email, city = 'Bogotá', country = 'Colombia' } = req.body; 
 
     // Verificar si se proporcionan nombre, apellido y correo
     if (!firstName || !lastName || !email) {
         return res.status(400).json({ error: 'No se puede crear el usuario porque falta nombre, apellido o correo.' });
     }
 
-    const user = {
+    const user = { //estructura de items de login
         firstName,
         lastName,
         email,

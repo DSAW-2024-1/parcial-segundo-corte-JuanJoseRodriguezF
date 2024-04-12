@@ -1,7 +1,7 @@
 const express = require('express');
 const axios = require('axios');
 
-const router = express.Router();
+const router = express.Router(); //sistema de router
 const coinCapApiUrl = 'https://api.coincap.io/v2';
 
 router.get('/', (req, res) => {
@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 router.get('/:coinName', async (req, res) => {
   const coinName = req.params.coinName;
   try {
-    const response = await axios.get(`${coinCapApiUrl}/assets/${coinName}`);
+    const response = await axios.get(`${coinCapApiUrl}/assets/${coinName}`); //solicitud GET a una API externa utilizando Axios.
     const priceUsd = response.data.data.priceUsd;
     res.status(200).send(`El precio en dólares de ${coinName} para hoy es: $${priceUsd}`);
   } catch (error) {
