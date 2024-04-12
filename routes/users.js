@@ -67,15 +67,15 @@ router.get('/:count', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    const { firstName, lastName, email, city = 'Bogotá', country = 'Colombia' } = req.body; 
+    const { name, lastName, email, city = 'Bogotá', country = 'Colombia' } = req.body; 
 
     // Verificar si se proporcionan nombre, apellido y correo
-    if (!firstName || !lastName || !email) {
+    if (!name || !lastName || !email) {
         return res.status(400).json({ error: 'No se puede crear el usuario porque falta nombre, apellido o correo.' });
     }
 
     const user = { //estructura de items de login
-        firstName,
+        name,
         lastName,
         email,
         city,

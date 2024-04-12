@@ -7,7 +7,22 @@
 ## Link de api desplegada en vercel
 [Link](https://parcial3-desarrollo.vercel.app/) 
 
-
+## Imagenes
+- /coin:<br>
+![imagen](/Images/coin-coinName.png)<br>
+Moneda no existente<br>
+![imagen](/Images/coin-coinNameWrong.png)
+- /users/:count?sort=ASC|DESC<br>
+lista organizada ascendente por defecto<br>
+![imagen](/Images/users-12.png)
+![imagen](/Images/users-12Desc.png)<br>
+comando desc/asc incorrecto<br>
+![imagen](/Images/users-12Wrong.png)
+- /users<br>
+Ciudad y pais se ponen bogota y colombia por defecto<br>
+![imagen](/Images/usersCorrect.png)
+nombre, apellido e email son obligatorios<br>
+![imagen](/Images/usersWrong.png)
 
 ### Instrucciones Generales
 - El examen consta de tres partes, cada una correspondiente a una ruta de una API REST desarrollada con Express, todas deben desarrollarse dentro de la misma aplicación.
